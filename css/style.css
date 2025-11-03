@@ -1,0 +1,2900 @@
+/* =======================================================================
+   COLORS & TYPOGRAPHY (Global Variables)
+   ======================================================================= */
+:root {
+    --primary-dark-blue: #091B32; 
+    --accent-dark: #003973;      
+    --link-blue: #5A96E3;        
+    --secondary-gold: #FFD84F;   
+    --contact-bg: #618A37;      
+    --text-color: #333;
+    --light-bg: #F5F7FA;        
+    --header-height: 60px;      
+    --font-heading: 'Sarabun', Sarabun;
+    --font-body: 'Cabin', Cabin;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); color: var(--text-color); line-height: 1.6; }
+a { text-decoration: none; color: var(--link-blue); transition: color 0.3s; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.content-section { padding: 100px 0; position: relative; }
+.light-bg { background-color: var(--light-bg); }
+.white-bg { background-color: white; }
+.section-tag { background-color: var(--secondary-gold); padding: 3px 10px; border-radius: 5px; font-size: 0.75em; text-transform: uppercase; font-weight: bold; color: var(--primary-dark-blue); }
+.section-title { font-size: 2.5em; color: var(--primary-dark-blue); margin-bottom: 20px; font-weight: 700;}
+.section-title.white-text { color: white; }
+.text-link { color: var(--link-blue); font-weight: 600; text-transform: uppercase; }
+
+/* --- Buttons --- */
+.cta-button { display: inline-block; padding: 15px 35px; font-weight: 700; border-radius: 5px; transition: background-color 0.3s, color 0.3s; border: none; cursor: pointer; }
+.primary-btn { background-color: var(--secondary-gold); color: var(--primary-dark-blue); }
+.secondary-btn { background-color: transparent; color: var(--text-light); border: 2px solid var(--secondary-gold); }
+
+
+/* =======================================================================
+   HEADER STYLES (Fixed, Dark Background Look)
+   ======================================================================= */
+
+.topnav {
+    position: fixed; top: 0; width: 100%; z-index: 1000; 
+    /* background-color: var(--primary-dark-blue);  */
+    background-color: #173350;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    /* margin-top: 50px; */
+    
+    display: flex; justify-content: space-between; align-items: center;
+    height: var(--header-height); 
+    padding: 0 0 0 30px; /* Padding only on the left to allow contact block to fill right edge */
+    color: white;
+}
+
+/* --- 1. Logo and Text --- */
+.logo-container { display: flex; align-items: center; }
+.logo-link { display: flex; align-items: center; color: white; text-decoration: none; }
+.logo-img { height: 75px; margin-right: 10px; }
+.logo-text { font-size: 2em; font-weight: 600; line-height: 1.1; text-transform: uppercase; }
+
+/* --- 2. Navigation Links (Center) --- */
+.nav-links {
+    display: flex; align-items: center; height: 100%; margin: 0 auto; 
+    gap: 15px; font-weight: bold;
+}
+.nav-links .nav-item { 
+    color: #516378; padding: 0 10px; line-height: var(--header-height); 
+    font-weight: 550; position: relative; transition: color 0.2s; white-space: nowrap; 
+}
+
+/* Underline Effect */
+.nav-links .nav-item::after {
+    content: ''; position: absolute; bottom: 12px; left: 10px; right: 10px; height: 3px; 
+    /* background-color: var(--link-blue); transform: scaleX(0); transition: transform 0.3s ease-out;  */
+}
+.nav-links .nav-item:hover::after,
+.nav-links .nav-item.active::after { transform: scaleX(1); }
+.nav-links .nav-item:hover, .nav-links .nav-item.active { color: white; }
+
+/* --- 3. CONTACT INFO BLOCK (Accent Color Box) --- */
+.header-contact-block {
+    background-color: #666d3c; /* Greenish/Gold BG */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px 0 25px; /* More padding on the left */
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1); 
+    color: white;
+}
+
+.contact-number-link { 
+    display: flex; align-items: center; color: white; text-decoration: none; 
+    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Subtle vertical separator */
+    padding-right: 15px; 
+    margin-right: 15px;
+}
+
+.contact-number-link i { font-size: 1.2em; margin-right: 10px; }
+.contact-text { display: flex; flex-direction: column; text-align: left; }
+.phone-number { font-weight: 700; font-size: 1.1em; line-height: 1.2; }
+.info-center { font-size: 0.75em; opacity: 0.8; }
+
+.chat-icon-link {
+    /* Style for the chat icon button */
+    display: flex; align-items: center; justify-content: center;
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: white;
+    font-size: 1em;
+}
+
+/* --- Mobile Toggle Icon --- */
+.topnav .menu-toggle-btn { display: none; } /* Hidden on desktop */
+
+
+/* =======================================================================
+   DROPDOWN MENU STYLES (Continued)
+   ======================================================================= */
+
+.dropdown-menu { position: relative; height: 100%; display: flex; align-items: center; }
+.dropdown-content { /* Main dropdown box */
+    list-style-type: none; position: absolute; top: 100%; left: 0; min-width: 250px;
+    background-color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1001;
+    padding: 10px 0; border-radius: 0 0 5px 5px; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+.dropdown-menu:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-content a { color: var(--text-color); padding: 10px 20px; display: block; text-align: left; }
+
+/* Submenu Styles */
+.submenu-content-list { /* Nested submenu container */
+    list-style-type: none; position: absolute; left: 100%; top: 0; min-width: 180px; 
+    background-color: white; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+    padding: 10px 0; border-radius: 5px; opacity: 0; visibility: hidden; 
+    transform: translateX(10px); transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+.submenu-item:hover .submenu-content-list { opacity: 1; visibility: visible; transform: translateX(0); }
+.submenu-title { display: flex; justify-content: space-between; align-items: center; }
+
+
+/* --- Mobile Responsive (Crucial) --- */
+@media (max-width: 1200px) {
+    .nav-links, .header-contact-block { display: none; }
+    .topnav { padding: 0 20px; }
+    .topnav .menu-toggle-btn { 
+        display: block; font-size: 1.8em; color: white; padding: 10px; line-height: 1; 
+    }
+}
+
+/* =======================================================================
+   HERO SECTION (Video Background Implementation) - UPDATED
+   ======================================================================= */
+.hero-section {
+    position: relative;
+    height: 80vh;
+    min-height: 600px; 
+    background-color: var(--primary-dark-blue);
+    background-image: none; 
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    /* padding-top: var(--header-height);  */
+    padding-left: 0 !important; 
+    padding-right: 0 !important;   
+    text-align: left;
+    color: white; 
+    overflow: hidden; 
+}
+
+/* --- Gradient Overlay Layer (Keep this, but make it stronger and simpler) --- */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits above the video layer */
+    
+    /* CRITICAL: Apply the dark diagonal gradient overlay */
+    background: linear-gradient(107deg, 
+        var(--primary-dark-blue) 23%, /* Strong dark start */
+        rgba(9, 27, 50, 0.4) 100%); /* Fade to semi-transparent dark */
+}
+
+/* --- NEW: Video Positioning Style --- */
+.hero-video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0; /* Place underneath the ::before overlay and content */
+    transform: translate(-50%, -50%);
+    
+    /* Style the video itself: Darken and ensure it covers the area */
+    filter: brightness(0.5); 
+    object-fit: cover; 
+}
+
+/* --- Hero Content (Ensure it sits above the overlays) --- */
+.hero-content {
+    position: relative;
+    z-index: 10; /* Must be the highest Z-index */
+    /* ... existing styles ... */
+}
+
+/* --- Content Styling --- */
+.hero-content {
+    position: relative; 
+    z-index: 2; 
+    width: 80%; /* Allow it to use more horizontal space */
+    max-width: 800px; /* Set a new, wider maximum width (adjust as needed) */
+    
+    /* FIX 2: Explicitly apply the left margin (e.g., 40px) */
+    margin-left: 20px; 
+    
+    /* FIX 3: Remove any internal padding conflicts */
+    padding: 0 !important; 
+    font-size: 18px;
+    text-align: left; 
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    /* REDUCED FONT SIZE FOR RELIABLE 3-LINE WRAP ON DESKTOP */
+    font-size: 80px; 
+    
+    line-height: 0.96em;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: white; 
+    margin-left: 50px;
+}
+
+.hero-title .highlight-gold {
+    color: var(--secondary-gold); /* Yellow/Gold highlight color */
+}
+
+/* --- CTA Button Styling --- */
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    font-weight: 700;
+    text-transform:capitalize;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-left: 60px;
+}
+.primary-btn {
+    background-color: white; /* Button is white as per screenshot */
+    color: #003973;
+    font-size: 0.90em; /* Larger button text */
+}
+.primary-btn:hover {
+    background-color: #091b32;
+    color: #003973;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .hero-title { font-size: 4.1em; }
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 4.1em; }
+    .hero-section {
+        padding-left: 20px;
+        text-align: center;
+        justify-content: center;
+    }
+    .hero-content { max-width: 100%; padding-right: 20px; }
+    .primary-btn { display: block; width: 30%; margin: 0 auto; }
+}
+
+
+/* =======================================================================
+   ABOUT US INTRO SECTION (3 & 4)
+   ======================================================================= */
+#about-intro { padding: 120px 0 100px; background-color: #f5f7fa;}
+.two-col-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+
+/* Image Block with Rotation */
+.about-image-block { position: relative; height: 400px; border-radius: 10px; overflow: hidden; background-color: #e0e0e0; }
+.about-main-image {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 10px; 
+    /* transform: rotate(5deg) scale(1.1); transform-origin: bottom right; filter: brightness(0.9);  */
+}
+
+.map-pins-overlay i { 
+    position: absolute; 
+    font-size: 1.8em; 
+    
+    /* FIX 1: Change color to white for maximum contrast */
+    color: var(--text-light); 
+    
+    /* FIX 2: Ensure they are above the main image and its rotation */
+    z-index: 10; 
+    
+    /* Keep the shadow for depth */
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9)); 
+}.about-text-content h2 { color: #003973; font-size: 3.5em; font-weight: 700px; line-height: 1.1; margin-bottom: 25px; }
+.about-text-content p { font-size: 1.3em; line-height: 1.7; color: #000000; margin-bottom: 1.2em; text-align: justify; }
+
+
+/* =======================================================================
+   MISSION & VISION SECTION (ABOUT US PAGE/HOMEPAGE)
+   ======================================================================= */
+
+.mission-vision-block {
+    background-color: white; 
+    /* Set only vertical padding here. Remove horizontal padding. */
+    padding: 80px 0 100px; 
+    line-height: 1.5; /
+}
+
+.mission-vision-block .container {
+    /* REMOVE the global padding applied by the .container class */
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.text-center-top {
+    text-align: center;
+}
+
+.section-tag-center {
+    /* Overrides the left-alignment of the default section-tag */
+    display: inline-block;
+    margin-bottom: 30px;
+    /* padding-left: 20px; */
+    background-color: var(--secondary-gold); /* Yellow tag */
+    color: #003973;
+    /* padding: 0 12px; */
+}
+
+.large-title {
+    font-size: 3.5em; /* Large heading size */
+    max-width: 800px;
+    margin: 0 auto 60px;
+    /* color: var(--accent-dark); */
+    color: #003973;
+}
+
+.mission-vision-grid {
+   display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1000px;
+    margin-left:100px;
+    margin-right: 0; 
+    margin-top: 0 auto;
+    text-align: left;
+}
+
+/* --- Individual Vision/Mission Box --- */
+.vision-box {
+    /* padding: 0 15px; */
+     padding: 0;
+}
+
+.vision-icon-circle {
+    /* Styles for the circle icon placeholder */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.vision-icon-circle i {
+    /* Icon styling */
+    font-size: 2em;
+    /* color: var(--link-blue);  */
+    color: #003973;
+}
+
+.blue-border-icon {
+    /* Unique styling for the icon background */
+    background: transparent;
+    border: 1px solid var(--link-blue); /* Blue border effect */
+}
+
+.vision-box h3 {
+    /* Title under the icon */
+    font-size: 1.7em;
+    font-weight: 700;
+    /* color: var(--primary-dark-blue); */
+    color: #003973;
+    margin-bottom: 15px;
+}
+
+.vision-box p {
+    font-size: 1.3em;
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
+    color: black;
+}
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+@media (max-width: 992px) {
+    .large-title {
+        font-size: 3.2em;
+    }
+    .mission-vision-grid {
+        grid-template-columns: 1fr; /* Stack vertically on tablet/mobile */
+        gap: 50px;
+    }
+    .vision-box {
+        text-align: center;
+    }
+    .vision-icon-circle {
+        margin: 0 auto 20px; /* Center icon when stacking */
+    }
+}
+
+
+/* =======================================================================
+   SERVICES GALLERY GRID SECTION (FINAL DESIGN FIX)
+   ======================================================================= */
+
+.section-title {
+     font-size: 3.5em; /* Large heading size */
+    max-width: 800px;
+    margin: 0 auto 60px;
+    /* color: var(--accent-dark); */
+    color: #003973;
+}
+
+.section-tag{
+     /* Overrides the left-alignment of the default section-tag */
+    display: inline-block;
+    margin-bottom: 30px;
+    /* padding-left: 20px; */
+    background-color: var(--secondary-gold); /* Yellow tag */
+    color: #003973;
+    padding: 0 12px;
+}
+
+.services-gallery-grid {
+    background-color: white; 
+    padding: 80px 0 100px;
+}
+
+.services-box-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    margin-top: 40px;
+}
+
+/* --- Individual Gallery Item (The Image Box) --- */
+.gallery-item-full {
+    display: block;
+    position: relative;
+    overflow: hidden; 
+    height: 200px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Slightly darker shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none; 
+    background-size: cover; 
+    background-position: center;
+    padding-top: 200px;
+    padding-bottom: 60px;
+}
+
+.gallery-item-full:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 15px 30px rgba(0, 77, 156, 0.2); 
+}
+
+/* 1. Warehousing & Distribution (Warehouse interior/forklift) */
+#service-wrd {
+    background-image: url('assests/Warehousing-Distribution.webp');
+}
+
+/* 2. Project Cargo (Forklift loading container) */
+#service-pjc {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                      url('assets/images/project-cargo-load.jpg');
+}
+
+/* 3. Single Window Services (Open container with boxes) */
+#service-sws {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
+                      url('assets/images/single-window-boxes.jpg');
+}
+
+/* 4. Multimodal Transport Services (Truck and airplane) */
+#service-mmt {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                      url('assets/images/multimodal-truck-plane.jpg');
+}
+
+/* 5. Agency Services (Conference/presentation/team) */
+#service-agy {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                      url('assets/images/agency-conference.jpg');
+}
+
+/* 6. Repositioning Of Containers (Stacked red containers) */
+#service-rpc {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
+                      url('assets/images/repositioning-stack.jpg');
+}
+
+/* --- Title Banner (The dark blue, positioned bar) --- */
+.service-title-banner {
+    position: absolute;
+    /* Position the banner to START ABOVE the bottom edge */
+    bottom: 30px; 
+    left: -15px; /* Pull the banner slightly out of the left edge */
+    
+    /* Calculate width to span beyond the container for the overflow effect */
+    width: calc(100% + 30px); 
+    
+    padding: 15px 25px;
+    background-color: #003973; /* Dark blue color */
+    color: white;
+    
+    /* Typography Fix */
+    font-size: 1.30em;
+    font-weight: 800; /* Make the title extremely bold */
+    text-align: center;
+    text-transform: none; /* Keep original casing */
+    
+    /* Visual Tweak: Slight right rotation/skew to mimic source */
+    transform: skewX(-5deg); 
+    
+    /* Z-index ensures the banner is above the image when they overlap */
+    z-index: 10;
+}
+
+/* --- Ensures text within the skewed bar is readable/straight --- */
+.service-title-banner {
+    transform: skewX(-5deg); 
+}
+.service-title-banner::before {
+    content: attr(data-text); /* Use a data attribute to hold the text */
+    transform: skewX(5deg); /* Correct the text skew back to 0 degrees */
+    display: block;
+}
+
+/* --- Custom Background Images (Re-setting the background for visual confirmation) --- */
+#service-wrd { background-image: url('assests/Warehousing-Distribution.webp'); }
+#service-pjc { background-image: url('assets/images/project-cargo.jpg'); }
+#service-sws { background-image: url('assets/images/single-window.jpg'); }
+/* ... (Ensure all 6 images are defined by ID) ... */
+
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+@media (max-width: 768px) {
+    .services-box-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 15px;
+    }
+    
+    .gallery-item-full {
+        height: 160px;
+    }
+    
+    .service-title-banner {
+        bottom: 20px; /* Adjust bottom position */
+        font-size: 1.1em;
+        width: calc(100% + 20px); 
+        left: -10px;
+        padding: 12px 20px;
+    }
+}
+
+/* =======================================================================
+   FOOTER STYLES (EXACT REPLICATION)
+   ======================================================================= */
+
+.main-footer {
+    /* Use the primary dark blue color from the header */
+    background-color: var(--primary-dark-blue); 
+    color: white;
+    padding: 70px 0 0; /* Adjust top padding for a spacious look */
+}
+
+.footer-grid {
+    display: grid;
+    /* Create three main columns: Branding (2fr), Links (1fr), Links (1fr) */
+    grid-template-columns: 2fr 1fr 1fr; 
+    gap: 40px;
+    padding-bottom: 50px;
+    
+    /* Subtle separation line matching the screenshot */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
+}
+
+/* --- Column 1: Branding and Contact Details --- */
+.footer-branding-col {
+    padding-right: 40px;
+}
+
+.footer-logo {
+    height: 40px; /* Size must match the header logo */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-text-footer {
+    font-size: 0.9em;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contact-detail-group {
+    margin-top: 30px;
+}
+
+.contact-detail-group p {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.7); /* Slightly lighter text color */
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.contact-detail-group i {
+    /* Icon styling */
+    color: var(--secondary-gold); /* Yellow/Gold icons for accent */
+    font-size: 1.1em;
+    min-width: 20px; /* Ensure icon has space */
+    margin-right: 15px;
+    padding-top: 2px;
+}
+
+/* --- Columns 2 & 3: Link Lists --- */
+.footer-col h4 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: white; /* Headings are plain white/light */
+    margin-bottom: 25px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.7); /* Link color */
+    font-size: 1em;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+.footer-col a:hover {
+    color: var(--secondary-gold); /* Yellow highlight on hover */
+}
+
+/* --- Copyright Strip --- */
+.copyright {
+    padding: 20px 0;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.5); /* Very light, muted color */
+    text-align: center;
+}
+
+.copyright a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+    }
+    .footer-branding-col {
+        grid-column: span 2; /* Make branding stretch across two columns */
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically on mobile */
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / PROFILE BANNER (Our Profile Banner)
+   ======================================================================= */
+
+.profile-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden; 
+}
+
+.hero-bg-image-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.05); 
+}
+
+.gradient-overlay-left {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-title-content {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-title {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PAGE HERO / TEAM BANNER STYLES
+   ======================================================================= */
+.profile-banner-hero1 {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-container1 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-image1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-left1 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-title-content1 {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-title1 {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero1 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   EXPERTISE SECTION STYLES
+   ======================================================================= */
+.expertise-section {
+    /* VISUAL OVERLAP EFFECT */
+    /* margin-top: -100px;  */
+    position: relative; 
+    z-index: 50; 
+    
+    background-color: white;
+    padding-top: 100px; 
+    padding-bottom: 100px; 
+}
+
+.team-expertise-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; 
+    gap: 30px; 
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Left Column: Stylized Title --- */
+.expertise-title-block {
+    padding-top: 5px; 
+}
+
+.expertise-title-h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5em; 
+    line-height: 1.1;
+    color: var(--accent-dark); 
+    font-weight: 700;
+}
+
+.expertise-title-h2 .highlight-blue-dark {
+    color: var(--primary-dark-blue); 
+}
+
+/* --- Right Column: Descriptive Text --- */
+.expertise-text-block {
+    padding-top: 5px; 
+}
+
+.expertise-paragraph {
+    font-size: 1.3em; 
+    line-height: 1.7; 
+    color: #000000;
+    margin-bottom: 1.2em; 
+    text-align: justify; 
+}
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .team-expertise-grid {
+        grid-template-columns: 1fr; 
+        gap: 40px;
+        padding: 0 20px;
+        text-align: center;
+    }
+    .expertise-section {
+        margin-top: -50px;
+    }
+    .expertise-title-block {
+        text-align: center;
+    }
+    .expertise-title-h2 {
+        font-size: 2.8em;
+    }
+    .expertise-paragraph {
+        text-align: left; /* Keep long text left-aligned/justified on small screens */
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / SAILING SCHEDULES BANNER
+   ======================================================================= */
+
+.profile-banner-hero2 {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-container2 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-image2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-left2 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-title-content2 {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-title2 {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero2 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   SCHEDULES CONTACT SECTION
+   ======================================================================= */
+
+.schedule-contact-section {
+    padding: 100px 0;
+    padding-top: 160px;
+    padding-bottom: 160px;
+}
+
+.schedule-grid {
+    display: grid;
+    /* Two columns: 1fr for the CTA, 1fr for the details */
+    grid-template-columns: 1fr 1fr; 
+    gap: 80px; 
+    align-items: flex-start;
+}
+
+/* --- Left Column: Main Query Block --- */
+.contact-query-block h2 {
+     font-family: var(--font-heading);
+    font-size: 2.8em; 
+    line-height: 1.1;
+    color: var(--accent-dark); 
+    font-weight: 700;
+}
+
+/* --- Right Column: Details Block --- */
+.query-details-block {
+    padding-top: 10px;
+}
+
+.contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-bg); /* Separator line */
+}
+
+.contact-detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.detail-number {
+    /* Yellow circle background for the number */
+    background-color: var(--secondary-gold); 
+    color: var(--primary-dark-blue);
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.detail-text h4 {
+    font-size: 1.4em;
+    color: #003973;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.detail-text a {
+    font-size: 1.1em;
+    color: var(--text-color); /* Use standard dark text for email */
+}
+
+.detail-text a:hover {
+    color: var(--link-blue);
+}
+
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .schedule-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically on tablet/mobile */
+        gap: 50px;
+        padding: 0 20px;
+    }
+    .contact-query-block h2 {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / SAILING SCHEDULES BANNER
+   ======================================================================= */
+
+.container-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7);
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftcontainer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlecontainer {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlecontaine {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PAGE HERO / Dangerous Goods Chart 
+   ======================================================================= */
+
+.profile-banner-hero4 {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-container4 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-image4 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-left4 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-title-content4 {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-title4 {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero4 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+.specs-page-hero {
+    /* The main container for the hero section */
+    position: relative;
+    padding-top: 50px; 
+    padding-bottom: 50px; 
+    min-height: 800px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    color: white;
+    overflow: hidden; 
+}
+
+/* --- 1. Background Image Wrapper (specs-media-wrapper) --- */
+.specs-media-wrapper {
+    /* position: absolute; */
+    top: 0; left: 0; 
+    width: 100%; 
+    height:100%;
+    z-index: 1; 
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+/* --- 2. Image Element (specs-media-element) --- */
+.specs-media-element {
+    width: 70%;
+    height: 200%;
+    /* object-fit: cover;  */
+    /* display: block; */
+
+}
+
+/* .overlay-dark-bg {
+    content: '';
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+} */
+
+/* Page Title Alignment */
+.specs-page-hero .page-title {
+    color: white;
+    font-size: 3.5em;
+    position: relative; 
+    z-index: 10; 
+    font-weight: 700;
+}
+
+/* =======================================================================
+   PAGE HERO / Shipping Incoterms Chart
+   ======================================================================= */
+
+.profile-banner-hero5 {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-container5 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-image5 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-left5 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-title-content5 {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-title5 {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+.specs-page-hero1 {
+    /* The main container for the hero section */
+    position: relative;
+    padding-top: 50px; 
+    padding-bottom: 50px; 
+    min-height: 800px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    color: white;
+    overflow: hidden; 
+}
+
+/* --- 1. Background Image Wrapper (specs-media-wrapper) --- */
+.specs-media-wrapper1 {
+    /* position: absolute; */
+    top: 0; left: 0; 
+    width: 100%; 
+    height:100%;
+    z-index: 1; 
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+
+/* --- 2. Image Element (specs-media-element) --- */
+.specs-media-element1 {
+    width: 70%;
+    height: 200%;
+    /* object-fit: cover;  */
+    /* display: block; */
+
+}
+
+/* .overlay-dark-bg {
+    content: '';
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 2;
+} */
+
+/* Page Title Alignment */
+.specs-page-hero .page-title {
+    color: white;
+    font-size: 3.5em;
+    position: relative; 
+    z-index: 10; 
+    font-weight: 700;
+}
+
+/* =======================================================================
+   PAGE HERO / Shipping Advisory
+   ======================================================================= */
+
+.advisory-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-advisory {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-advisory {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftadvisory {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titleadvisory {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titleadvisory {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   COMING SOON SECTION
+   ======================================================================= */
+
+.coming-soon-section {
+    padding: 100px 0 100px; /* Large bottom padding to push footer away */
+}
+
+.coming-soon-message {
+    font-size: 3em;
+    font-weight: 700;
+    color: #003973;
+    text-align: center;
+}
+
+/* =======================================================================
+   PAGE HERO / Shipping News
+   ======================================================================= */
+
+.news-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-news {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-news {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftnews {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlenews {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlenews {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   COMING SOON SECTION
+   ======================================================================= */
+
+.coming-soon-section1 {
+    padding: 100px 0 100px; /* Large bottom padding to push footer away */
+}
+
+.coming-soon-message1 {
+    font-size: 3em;
+    font-weight: 700;
+    color: #003973;
+    text-align: center;
+}
+
+/* =======================================================================
+   PAGE HERO / MUMBAI BANNER
+   ======================================================================= */
+
+.mumbai-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-mumbai {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-mumbai {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftmumbai {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlemumbai {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlemumbai {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   LOCATION DETAILS SECTION
+   ======================================================================= */
+
+.location-details-section {
+    padding: 100px 0;
+}
+
+.location-grid-2-col {
+    display: grid;
+    /* Image on left (1fr), Contact details on right (1.2fr) */
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 80px; 
+    align-items: flex-start; /* Align content to the top */
+    text-align: left;
+}
+
+/* --- Left Column: Location Image --- */
+.location-image-block {
+    position: relative;
+    height: 300px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.location-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.location-pins-overlay i {
+    /* Custom Map Pins (adjust positions as needed) */
+    position: absolute; font-size: 1.5em; color: var(--link-blue); 
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+    z-index: 10;
+}
+.pin-top-right { top: 10%; right: 10%; }
+.pin-middle-left { top: 60%; left: 10%; }
+.pin-bottom-center-left { bottom: 0%; left: 30%; }
+.pin-bottom-center-right { bottom: 0%; right: 30%; }
+
+
+/* --- Right Column: Contact Details --- */
+.office-address-group {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.office-address-group h4 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 10px;
+}
+
+.office-address-group p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.contact-people-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for contact persons */
+    gap: 30px;
+}
+
+.person-detail {
+    margin-bottom: 20px;
+}
+
+.person-detail h5 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 5px;
+}
+
+.person-detail p {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 3px;
+}
+
+.person-detail a {
+    font-size: 1em;
+    color: var(--link-blue);
+}
+
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .location-grid-2-col {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 40px;
+    }
+    .contact-people-list {
+        grid-template-columns: 1fr; /* Stack contact persons */
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / Mundra BANNER
+   ======================================================================= */
+
+.mundra-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-mundra {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-mundra {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftmundra {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlemundra {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlemundra {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+
+/* =======================================================================
+   LOCATION DETAILS SECTION
+   ======================================================================= */
+
+.location-details-section {
+    padding: 100px 0;
+}
+
+.location-grid-2-col {
+    display: grid;
+    /* Image on left (1fr), Contact details on right (1.2fr) */
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 80px; 
+    align-items: flex-start; /* Align content to the top */
+    text-align: left;
+}
+
+/* --- Left Column: Location Image --- */
+.location-image-block1 {
+    position: relative;
+    height: 300px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.location-main-image1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.location-pins-overlay i {
+    /* Custom Map Pins (adjust positions as needed) */
+    position: absolute; font-size: 1.5em; color: var(--link-blue); 
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+    z-index: 10;
+}
+.pin-top-right { top: 10%; right: 10%; }
+.pin-middle-left { top: 60%; left: 10%; }
+.pin-bottom-center-left { bottom: 0%; left: 30%; }
+.pin-bottom-center-right { bottom: 0%; right: 30%; }
+
+
+/* --- Right Column: Contact Details --- */
+.office-address-group {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.office-address-group h4 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 10px;
+}
+
+.office-address-group p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.contact-people-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for contact persons */
+    gap: 30px;
+}
+
+.person-detail {
+    margin-bottom: 20px;
+}
+
+.person-detail h5 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 5px;
+}
+
+.person-detail p {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 3px;
+}
+
+.person-detail a {
+    font-size: 1em;
+    color: var(--link-blue);
+}
+
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .location-grid-2-col {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 40px;
+    }
+    .contact-people-list {
+        grid-template-columns: 1fr; /* Stack contact persons */
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / Chennai BANNER
+   ======================================================================= */
+
+.chennai-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-chennai {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-chennai {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftchennai {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlechennai {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlechennai {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   LOCATION DETAILS SECTION
+   ======================================================================= */
+
+.location-details-section {
+    padding: 100px 0;
+}
+
+.location-grid-2-col {
+    display: grid;
+    /* Image on left (1fr), Contact details on right (1.2fr) */
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 80px; 
+    align-items: flex-start; /* Align content to the top */
+    text-align: left;
+}
+
+/* --- Left Column: Location Image --- */
+.location-image-block2 {
+    position: relative;
+    height: 300px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.location-main-image2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.location-pins-overlay i {
+    /* Custom Map Pins (adjust positions as needed) */
+    position: absolute; font-size: 1.5em; color: var(--link-blue); 
+    filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+    z-index: 10;
+}
+.pin-top-right { top: 10%; right: 10%; }
+.pin-middle-left { top: 60%; left: 10%; }
+.pin-bottom-center-left { bottom: 0%; left: 30%; }
+.pin-bottom-center-right { bottom: 0%; right: 30%; }
+
+
+/* --- Right Column: Contact Details --- */
+.office-address-group {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.office-address-group h4 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 10px;
+}
+
+.office-address-group p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.contact-people-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for contact persons */
+    gap: 30px;
+}
+
+.person-detail {
+    margin-bottom: 20px;
+}
+
+.person-detail h5 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 5px;
+}
+
+.person-detail p {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 3px;
+}
+
+.person-detail a {
+    font-size: 1em;
+    color: var(--link-blue);
+}
+
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .location-grid-2-col {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 40px;
+    }
+    .contact-people-list {
+        grid-template-columns: 1fr; /* Stack contact persons */
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / Agency Services BANNER
+   ======================================================================= */
+
+.agency-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-agency {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-agency {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7);
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftagency {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titleagency {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titleagency {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   MAIN SERVICE CONTENT & ICON GRID
+   ======================================================================= */
+
+.services-section {
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #f5f5f5 0%, #ffffff 30%);
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.services-container {
+  /* max-width: 900px; */
+  margin: 0 auto;
+}
+
+/* Yellow Label */
+.section-label {
+  display: inline-block;
+  background-color: #ffd84f;
+  color: #003973;
+  font-weight: 600;
+  padding: 1px 1px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 60px;
+}
+
+/* Content */
+.service-content {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  text-align: justify;
+  gap: 20px;
+}
+
+.service-icon {
+  font-size: 25px;
+  color: #003973;
+}
+
+.service-title {
+  font-size: 26px;
+  color: #003973;
+  font-weight: 700;
+}
+
+.service-description {
+  /* max-width: 750px; */
+  font-size: 20px;
+  line-height: 1.6;
+  color: #111;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 15px;
+  }
+
+  .service-title {
+    font-size: 22px;
+  }
+
+  .service-description {
+    font-size: 15px;
+  }
+}
+
+/* =======================================================================
+   AGENCY SERVICES INTRO SECTION (Block 1)
+   ======================================================================= */
+
+.agency-intro-section {
+    padding: 100px 0 60px; 
+    background-color: white; 
+}
+
+.agency-intro-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px; 
+    text-align: center; 
+}
+
+/* --- Aligned Tag and Icon Group FIX --- */
+.tag-icon-group {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 25px; 
+}
+
+.section-tag {
+	background-color: var(--secondary-gold);
+    color: var(--primary-dark-blue);
+    font-size: 1.2em;
+    font-weight: 1000;
+    padding: 8px 18px;
+    border-radius: 4px;
+    margin-right: 15px;
+    white-space: nowrap;
+}
+
+.agency-intro-icon {
+    font-size: 25px; /* Ship Icon Size */
+    color: #003973; 
+    line-height: 1; 
+    margin-top: -5px; /* Manual vertical alignment correction */
+}
+
+.agency-intro-container h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5em; 
+    font-weight: 800;
+    color: var(--accent-dark); 
+    margin-bottom: 25px; 
+    line-height: 1.2;
+}
+
+.agency-intro-container p {
+    font-size: 1.15em; 
+    line-height: 1.65;
+    color: var(--text-color);
+    font-weight: 500;
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify; 
+}
+
+.agency-intro-container p strong {
+    color: var(--primary-dark-blue); 
+    font-weight: 700; 
+}
+
+/* =======================================================================
+   WORLDWIDE SHIPPING ICON GRID (Block 2)
+   ======================================================================= */
+
+.worldwide-shipping-section {
+    padding: 60px 0 100px; /* Reduced top padding to flow from intro block */
+    background-color: white;
+    text-align: center;
+}
+
+.worldwide-title {
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.worldwide-subtitle {
+    font-size: 1.3em;
+    color: black;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.service-icon-grid-worldwide {
+    display: grid;
+    /* 3 columns on desktop */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 80px 50px;
+    text-align: left;
+    margin-top: 100px;
+}
+
+.service-icon-item {
+    padding: 0 15px;
+}
+
+.icon-small {
+    /* Styles for the small icons */
+    font-size: 2.2em;
+    color: #003973;
+    margin-bottom: 15px;
+}
+
+.service-icon-item h4 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+}
+
+.service-icon-item p {
+    font-size: 1.2em;
+    color: black;
+    /* margin-left: auto;
+    margin-right: auto; */
+    max-width: 300px;
+    text-align: justify;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .service-icon-grid-worldwide {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+}
+@media (max-width: 600px) {
+    .service-icon-grid-worldwide {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+}
+
+/* =======================================================================
+   TRACKING PROCESS BLOCK
+   ======================================================================= */
+
+.tracking-process-block {
+    padding: 100px 0;
+    background-color: white;
+}
+
+.tracking-grid {
+    display: grid;
+    /* Two columns: 1fr for text (left), 1fr for steps (right) */
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+/* --- Left Column: Title Block --- */
+.process-text-left {
+    padding-top: 15px; /* Adjust for better alignment with the first step */
+    text-align: left;
+}
+
+.process-tag {
+    /* Yellow tag for the top label */
+    background-color: var(--secondary-gold);
+    color: var(--primary-dark-blue);
+    font-size: 0.85em;
+    padding: 6px 15px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.tracking-title {
+    font-family: var(--font-heading);
+    font-size: 3em;
+    font-weight: 700;
+    color: #003973;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.tracking-description {
+    font-size: 1.2em;
+    color: black;
+    line-height: 1.6;
+}
+
+/* --- Right Column: Steps List --- */
+.process-steps-right {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Spacing between the steps */
+}
+
+.step-detail-item {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+.step-detail-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* --- Step Marker (The Yellow Circle Number) --- */
+.step-marker {
+    background-color: var(--secondary-gold);
+    color: #003973;
+    min-width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-right: 20px;
+    flex-shrink: 0; /* Prevents the circle from shrinking */
+}
+
+.step-text h4 {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: #003973;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.step-text p {
+    font-size: 1.2em;
+    color: black;
+}
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+
+@media (max-width: 992px) {
+    .tracking-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically on tablet/mobile */
+        gap: 50px;
+    }
+    .process-text-left {
+        padding-top: 0;
+        text-align: center; /* Center the title block */
+    }
+    .process-text-left .process-tag {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .tracking-title {
+        font-size: 2.5em;
+    }
+}
+
+/* =======================================================================
+   PAGE HERO / Repositioning Services BANNER
+   ======================================================================= */
+
+.repositioning-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-repositioning {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-repositioning {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; 
+    filter: brightness(0.7);
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftrepositioning {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlerepositioning {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlerepositioning {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PAGE HERO / Warehousing And Distribution BANNER
+   ======================================================================= */
+
+.warehousing-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-warehousing {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-warehousing {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftwarehousing {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlewarehousing {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlewarehousing {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PAGE HERO / Single Window Services BANNER
+   ======================================================================= */
+
+.single-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-single {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-single {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftsingle {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlesingle {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlesingle {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PAGE HERO / Project Cargo BANNER
+   ======================================================================= */
+
+.project-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-project {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-project {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftproject {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titleproject {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titleproject {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* =======================================================================
+   PROJECT CARGO SECTION
+   ======================================================================= */
+
+.project-cargo-section {
+    /* padding: 80px 0 100px;  */
+    background-color: white; 
+    padding-top: 0;
+}
+
+.project-cargo-container {
+    /* max-width: 1200px; */
+    /* margin: 0 auto; */
+    padding: 0 40px; 
+    text-align: left;
+}
+
+.solutions-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 25px;
+}
+
+/* --- Styled Feature List (Bulleted List) --- */
+.project-features-list {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0 0 50px 0;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.project-features-list li {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 20px; /* Space for custom bullet */
+    position: relative;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+/* Custom Circle Bullet/Dot */
+.project-features-list li::before {
+    content: "•"; /* Use a standard large bullet */
+    color: black; /* Yellow/Gold accent color */
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    line-height: 1.6;
+}
+
+/* --- Shipment Reference --- */
+.shipment-reference-block {
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: black;
+}
+
+/* =======================================================================
+   PHOTO GALLERY GRID
+   ======================================================================= */
+
+.project-gallery-grid {
+    display: grid;
+    /* 4 columns on desktop, 2 columns on tablet */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 15px; /* Spacing between photos */
+    margin-top: 50px;
+}
+
+.project-gallery-grid1 {
+    display: grid;
+    /* 4 columns on desktop, 2 columns on tablet */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 15px; /* Spacing between photos */
+    margin-top: 50px;
+}
+
+.gallery-photo-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.gallery-photo-item img:hover {
+    transform: scale(1.05);
+}
+
+/* =======================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================= */
+@media (max-width: 768px) {
+    .project-gallery-grid {
+        /* Switch to 2 columns on mobile/tablet */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+    .project-features-list {
+        font-size: 1em;
+    }
+}
+
+
+
+/* =======================================================================
+   PAGE HERO / Multimodal Transport Services BANNER
+   ======================================================================= */
+
+.multimodal-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-multimodal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-multimodal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftmultimodal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlemultimodal {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlemultimodal {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+/* --- Styled Feature List (Bulleted List) --- */
+.project-features-list1 {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+    margin: 0 0 50px 0;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.project-features-list1 li {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 20px; /* Space for custom bullet */
+    position: relative;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+/* Custom Circle Bullet/Dot */
+.project-features-list1 li::before {
+    content: "•"; /* Use a standard large bullet */
+    color: black; /* Yellow/Gold accent color */
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    line-height: 1.6;
+}
+
+.solutions-title1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-dark-blue);
+    margin-bottom: 25px;
+}
+
+/* =======================================================================
+   PAGE HERO /Contact Us BANNER
+   ======================================================================= */
+
+.contact-banner-hero {
+    position: relative;
+    padding-top: var(--header-height);
+    padding-bottom: 50px; 
+    min-height: 400px; /* Increased height for visual impact */
+    display: flex;
+    align-items: center; /* Vertically center the title */
+    justify-content: center; /* Horizontally center the title */
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Important to contain absolute children */
+}
+
+.hero-bg-image-contact{
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.hero-bg-contact {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.7); 
+    transform: scale(1.05); /* Slight scale to hide blur edges */
+}
+
+.gradient-overlay-leftcontact {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2; 
+    background: linear-gradient(to right, 
+        var(--primary-dark-blue) 0%, 
+        rgba(23, 51, 80, 0.9) 30%, 
+        rgba(23, 51, 80, 0) 70%); 
+}
+
+/* --- 3. Title Content --- */
+.page-titlecontact {
+    position: relative;
+    z-index: 10; /* Ensure title is on top */
+}
+
+.page-titlecontact {
+    color: white;
+    font-size: 4em; /* Large, centered title */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Ensure Header Offset is applied to the section --- */
+.profile-banner-hero5 {
+    padding-top: calc(var(--header-height) + 20px); /* Add extra space below header */
+}
+
+
